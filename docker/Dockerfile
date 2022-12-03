@@ -1,12 +1,20 @@
-FROM nginx
+FROM node:14.17.6 AS build_base
 
-MAINTAINER Danny
+RUN mkdir -p /code/ && npm set registry https://registry.npm.taobao.org/
+WORKDIR /code
+COPY package.json package.json
+RUN npm install --force
+
+ADD .  .
+RUN npm run build
+
+FROM nginx AS deploy
 
 RUN mkdir -p /data/wwwroot/onlineditor
 WORKDIR /data/wwwroot/onlineditor
-COPY ./nginx.conf /etc/nginx/nginx.conf
-COPY dist /data/wwwroot/onlineditor
+COPY --from=build_base /code/dist /data/wwwroot/onlineditor
+COPY ./docker/nginx.conf /etc/nginx/nginx.conf
 
 EXPOSE 80
 
-CMD ["nginx", "-g", "daemon off;"]
+ENTRYPOINT ["nginx", "-g", "daemon off;"]
