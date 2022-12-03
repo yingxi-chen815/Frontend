@@ -30,6 +30,9 @@ pipeline {
                         # chmod 755 School-0.0.1-SNAPSHOT.jar
                         
                         docker -v
+                        
+                        docker stop dfs-frontend-img
+                        
                         echo "start build"
                         docker build -t dfs-frontend-img -f docker/Dockerfile .
                         docker run -d -p 8002:80 --name dfs-frontend-img dfs-frontend-img
