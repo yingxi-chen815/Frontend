@@ -32,7 +32,7 @@ pipeline {
                         docker -v
                         echo "start build"
                         docker build -t dfs-frontend-img -f docker/Dockerfile .
-                        docker run -d -p 8002:80 dfs-frontend-img
+                        docker run -d -p 8002:80 --name dfs-frontend-img dfs-frontend-img
                         echo "finished"
     
                 '''
