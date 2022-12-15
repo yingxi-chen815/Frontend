@@ -6,7 +6,7 @@ COPY package.json package.json
 RUN npm install --force
 
 RUN echo $PWD
-ADD .  .
+ADD /code  /code
 RUN npm run build
 
 FROM nginx AS deploy
