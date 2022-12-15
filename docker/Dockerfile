@@ -5,6 +5,7 @@ WORKDIR /code
 COPY package.json package.json
 RUN npm install --force
 
+RUN echo $PWD
 ADD .  .
 RUN npm run build
 
