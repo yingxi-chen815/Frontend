@@ -22,6 +22,7 @@ pipeline {
             steps {
                 sh '''
                         docker -v
+                        pwd
                         
                         # stop existing container
                         docker stop dfs-frontend-img
