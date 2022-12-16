@@ -6,7 +6,7 @@ COPY package.json package.json
 RUN npm install --force
 
 RUN echo $PWD
-ADD /var/jenkins_home/workspace/frontend_test/.  /code
+ADD .  .
 RUN npm run build
 
 FROM nginx AS deploy
