@@ -25,9 +25,9 @@ pipeline {
                         pwd
                         
                         # stop existing container
-                        #docker stop dfs-frontend-img
-                        #docker rm dfs-frontend-img
-                        #docker rmi dfs-frontend-img
+                        docker stop dfs-frontend-img
+                        docker rm dfs-frontend-img
+                        docker rmi dfs-frontend-img
                         
                         echo "start build"
                         docker build -t dfs-frontend-img -f docker/Dockerfile .
